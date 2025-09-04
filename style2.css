@@ -1,0 +1,241 @@
+/* style2.css - full version with background + animations fixed */
+
+/* --- config vars --- */
+:root {
+  --bg-url: url('https://i.pinimg.com/736x/e2/03/45/e203457161ff78a6454da7a6628168de.jpg');
+  --d: 10s; /* gallery cycle duration */
+}
+
+/* --- reset --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- page background & layout --- */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       
+  justify-content: flex-start; /* keep headline at top */
+  padding-top: 60px;          /* spacing from top */
+  background-image: var(--bg-url);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* subtle overlay so text/gallery stand out */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- headline --- */
+#hedlinecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  z-index: 2;
+}
+
+#shine {
+  font-size: 60px;
+  font-weight: 800;
+  color: transparent;
+  position: relative;   /* add */
+  z-index: 10;          /* increase */
+  background-image: linear-gradient(90deg, #ffffff 0%, #ffe4f0 50%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+  text-shadow: 0 2px 8px rgba(233,85,189,0.18);
+  letter-spacing: 1px;
+}
+
+
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Gallery (stacked animation) --- */
+.gallery {
+  --d: 10s;
+  display: grid;
+  place-items: center;
+  width: 180px;       /* smaller width */
+  margin: 40px auto;  /* spacing above and below */
+  position: relative;
+  z-index: 2;
+}
+
+.gallery > img {
+  grid-area: 1 / 1;
+  width: 100%;
+  max-width: 180px;  /* enforce max size */
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border: 6px solid rgba(255,255,255,0.9);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.55);
+  z-index: 2;
+  transform-origin: center center;
+  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+  will-change: transform;
+  border-radius: 12px;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  background-color: #fff;
+}
+
+.gallery > img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+}
+
+.gallery > img:nth-child(1) { animation-delay: calc(0*var(--d)); --r: 16deg; }
+.gallery > img:nth-child(2) { animation-delay: calc(-0.2*var(--d)); --r: -1deg; }
+.gallery > img:nth-child(3) { animation-delay: calc(-0.4*var(--d)); --r: -19deg; }
+.gallery > img:nth-child(4) { animation-delay: calc(-0.6*var(--d)); --r: 6deg; }
+.gallery > img:nth-child(5) { animation-delay: calc(-0.8*var(--d)); --r: -8deg; }
+
+.gallery img:last-child {
+  animation-name: slide, z-order-last;
+}
+
+@keyframes slide {
+  0%, 20%, 100% { transform: translateX(0%) rotate(var(--r)); }
+  10% { transform: translateX(120%) rotate(var(--r)); }
+}
+
+@keyframes z-order {
+  0%, 9% { z-index: 2; }
+  10%, 20% { z-index: 1; }
+  80%, 100% { z-index: 2; }
+}
+
+@keyframes z-order-last {
+  0%, 9% { z-index: 2; }
+  10%, 20% { z-index: 1; }
+  90%, 100% { z-index: 2; }
+}
+
+/* --- Buttons: Blue Gradient Blur --- */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(0,123,255,0.8), rgba(0,200,255,0.8));
+    backdrop-filter: blur(6px);
+    border: none;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    
+    /* ADD THESE 2 LINES: */
+    position: relative;
+    z-index: 10;
+}
+
+
+.btn:hover {
+    background: linear-gradient(135deg, rgba(0,200,255,0.9), rgba(0,123,255,0.9));
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-button {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.back-button button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(0,123,255,0.8), rgba(0,200,255,0.8));
+    backdrop-filter: blur(6px);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    /* ADD THESE 2 LINES: */
+    position: relative;
+    z-index: 10;
+}
+
+
+.back-button button:hover {
+    background: linear-gradient(135deg, rgba(0,200,255,0.9), rgba(0,123,255,0.9));
+    transform: scale(1.05);
+}
+
+/* --- responsive tweaks --- */
+@media only screen and (max-width: 900px) {
+  #shine { font-size: 42px; }
+  .gallery { width: 140px; margin: 30px auto; }
+  .gallery > img { max-width: 140px; }
+}
+
+@media only screen and (max-width: 600px) {
+  #shine { font-size: 22px; }
+  #hedlinecontainer { margin-bottom: 24px; }
+  .gallery { width: 120px; margin: 24px auto; }
+  .gallery > img { max-width: 120px; border-width: 4px; border-radius: 10px; }
+}
+/* Step 7 Selfies gallery images */
+#step7 .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18vw, 1fr));
+    gap: 1.5vw;
+    justify-items: center;
+    margin: 2vw auto;
+}
+
+#step7 .gallery img {
+    width: 100%;
+    max-width: 22vw; /* max size for larger screens */
+    aspect-ratio: 1/1;
+    border: 5px solid rgba(255,255,255,0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#step7 .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+
+
+@media (max-width: 900px) {
+    #step7 .gallery img { max-width: 30vw; }
+    #step7 .btn { font-size: 2vw; padding: 2vw 4vw; min-width: 35vw; }
+}
+
+@media (max-width: 600px) {
+    #step7 .gallery img { max-width: 40vw; }
+    #step7 .btn { font-size: 3.5vw; padding: 3vw 5vw; min-width: 60vw; }
+}

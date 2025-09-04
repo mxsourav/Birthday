@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>something more</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Main style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Selfies gallery style -->
+    <link rel="stylesheet" href="style2.css">
+    <!-- Portraits gallery style -->
+    <link rel="stylesheet" href="style3.css">
+</head>
+
+<body>
+    <!-- AUDIO ELEMENT: Background Music -->
+    <audio id="bgMusic" src="./audio/bgsound2.mp3" style="display:none;"></audio>
+
+    <div id="particles-js"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+   
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+       <!-- Step 1: Greeting -->
+<div class="step" id="step1" style="display:block;">
+    <!-- Heading always on single line -->
+    <h1 class="single-line">Once again Happy Birthday, Ishika!</h1>
+
+    <!-- First paragraph (can wrap if needed) -->
+    <p>I've created something extra for you...<br>
+    Are you ready to begin this special journey?</p><br>
+
+    <!-- Cake image without inline size -->
+    <img id="cakeImage" src="./images/birthday_with_cake.jpg" alt="Birthday Cake">
+
+    <!-- Sub-text with class for responsive CSS -->
+    <p class="sub-text">
+      Touch the cake for an immersive experience!
+    </p><br>
+
+    <button class="btn" onclick="nextStep(2)">Ofc I'm Ready😍</button>
+</div>
+
+
+
+        <!-- Step 2: Lock Input -->
+        <div class="step" id="step2" style="display:none;">
+            <h2>Let's Make This Personal</h2>
+            <p>Enter the valid password of Sourav's phone</p>
+            <input type="password" class="name-input" id="nameInput" placeholder="Enter password">
+            <button class="btn" onclick="saveName()">Continue</button>
+        </div>
+
+        <!-- Step 3: Heart Animation -->
+        <div class="step" id="step3" style="display:none;">
+            <h2> <span id="displayName">ohh is it you Megh?🫣</span></h2><br>
+            <p>Click on the heart to visually feel my love for you!</p>
+            <div id="interactiveHeart" onclick="createHearts()">💖</div>
+            <div id="heartMessage" class="message-box">
+                <p>Every beat of my heart whispers your name, <span id="heartName">ishika❤️</span></p>
+            <br><br></div>
+            <button class="btn" onclick="nextStep(4)">Next Chapter</button>
+        </div>
+
+<!-- Step 4: Birthday Message -->
+<div class="step" id="step4" style="display:none;">
+    <h2>look It's my cute baby doll😘</h2>
+
+    <!-- Photo -->
+    <div class="photo">
+        <img src="./images/image2.jpg" alt="Beautiful You">
+    </div><br>
+        <span class="glow-text">Some time Hoty❤️‍🔥 some time Cutie🍨 & some times Atom Bomb💣</span>
+    </p><br>
+
+    <button class="btn" onclick="nextStep(5)">Feel Me With You</button>
+</div>
+
+
+        <!-- Step 5: Memory Lane -->
+<div class="step" id="step5" style="display:none;">
+    <h2>Shhh! It's Our Special Moments🤫</h2>
+    <p>Some memories I'll cherish forever...<br>Choose any of them or click the button below</p>
+    
+    <div class="gallery">
+        <!-- Selfies button -->
+        <div class="photo-frame" onclick="openStep(7)">
+            <img src="./images/hug.jpg" alt="Our Selfies">
+            <span>Our Selfies</span>
+        </div>
+
+        <!-- Portraits button -->
+        <div class="photo-frame" onclick="openStep(8)">
+            <img src="./images/date.jpg" alt="Our Portraits">
+            <span>Our Portraits</span>
+        </div>
+    </div>
+
+    <button class="btn" onclick="nextStep(6)">Final Chapter</button>
+</div>
+
+
+        <!-- Step 6: Final Wish -->
+        <div class="step" id="step6" style="display:none;">
+            <h1>🎉 Abaro Happy Birthday, <span id="finalName">cutiepie</span>! 🎂</h1>
+            <br><br>
+            <p class="cursive-text">✨I wish ajj ami tor kache kache thakte petam, miss toh korchi toke khub✨</p>
+            <p class="cursive-text">🌟 Next bar pakka amio thakbo tor kache🌌</p>
+            <p class="cursive-text">⏳ tokhn seiii kore celebrate korbo 🥰</p>
+            <p class="cursive-text">💌 once again With all my love, Happy Birthday priyo! forever and always... 💫</p>
+            <br><br>
+        
+            <div class="signature">Yours truly,&nbsp;<b>Sourav✨</b></div><br>
+            <div class="final-photo">
+                    <img src="./images/sourav.jpg" alt="Birthday Surprise">
+                </a>
+            </div>
+        </div>
+
+        <!-- Step 7: Selfies Gallery -->
+        <div class="step" id="step7" style="display:none;">
+            <h2>Our Selfies💞</h2>
+            <div class="gallery">
+                <img src="./images/photo1.jpg" alt="a lovely kiss in the night">
+                <img src="./images/photo2.jpg" alt="a woman inside a car">
+                <img src="./images/photo5.jpg" alt="a baby">
+                <img src="./images/photo3.jpg" alt="a girl in the forest">
+                <img src="./images/photo4.jpg" alt="a girl">
+            </div>
+            <br><br>
+            <button class="btn" onclick="backToStep(5)">⬅ Back</button>
+        </div>
+
+        <!-- Step 8: Portraits Gallery -->
+        <div class="step" id="step8" style="display:none;">
+            <h2>Us Together💕</h2>
+            <div class="gallery">
+                <div class="photo-frame">
+                    <img src="./images/potrait1.jpg" alt="Portrait 1">
+                    <span>First Couple Pic</span>
+                </div>
+                <div class="photo-frame">
+                    <img src="./images/potrait2.jpg" alt="Portrait 2">
+                    <span>Clicked by Sir ji😎</span>
+                </div>
+                <div class="photo-frame">
+                    <img src="./images/potrait3.jpg" alt="Portrait 3">
+                    <span>First Pujo Pic</span>
+                </div>
+                <div class="photo-frame stacked-frame">
+                    <div class="stacked-photo">
+                        <img src="./images/landscape3.jpg" alt="First Pic of Kolkata">
+                        <span>First Pic of Kolkata</span>
+                    </div>
+                    <div class="stacked-photo">
+                        <img src="./images/landscape1.jpg" alt="First Holi">
+                        <span>First Holi</span>
+                    </div>
+                </div>
+                <div class="photo-frame">
+                    <img src="./images/propose.jpg" alt="Portrait 1">
+                    <span>Confession 2k22</span>
+                </div>
+                <div class="photo-frame stacked-frame">
+                    <div class="stacked-photo">
+                        <img src="./images/landscape4.jpg" alt="Holi 2k25">
+                        <span>Holi 2k25</span>
+                    </div>
+                    
+                    <div class="stacked-photo">
+                        <img src="./images/landscape2.jpg" alt="First Movie">
+                        <span>First Movie</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" onclick="backToStep(5)">⬅ Back</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        const cakeImage = document.getElementById('cakeImage');
+        const floatingHeartsContainer = document.getElementById('floatingHearts');
+
+        // Music start on cake click
+        function triggerHearts() {
+            for (let i = 0; i < 5; i++) {
+                let smallHeart = document.createElement("div");
+                smallHeart.className = "small-heart";
+                smallHeart.innerHTML = "❤️";
+                smallHeart.style.left = Math.random() * 100 + "vw";
+                floatingHeartsContainer.appendChild(smallHeart);
+                setTimeout(() => smallHeart.remove(), 4000);
+            }
+        }
+
+        cakeImage.addEventListener('click', () => {
+            const savedTime = localStorage.getItem('bgMusicTime');
+            if (savedTime) bgMusic.currentTime = parseFloat(savedTime);
+            bgMusic.play().catch(err => console.log('User interaction required to play music'));
+            triggerHearts();
+        });
+
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('bgMusicTime', bgMusic.currentTime);
+        });
+
+        // Step navigation functions
+        function nextStep(stepId) {
+            document.getElementById(`step${currentStep}`).style.display = "none";
+            currentStep = stepId || currentStep + 1;
+            const next = document.getElementById(`step${currentStep}`);
+            if (next) {
+                next.style.display = "block";
+                updateProgress();
+            }
+        }
+
+        function openStep(stepNum) {
+            document.querySelectorAll(".step").forEach(s => s.style.display = "none");
+            document.getElementById('step' + stepNum).style.display = "block";
+            currentStep = stepNum;
+            updateProgress();
+        }
+
+        function backToStep(stepNum) {
+            openStep(stepNum);
+        }
+
+        function updateProgress() {
+            let progress = 0;
+            if (currentStep <= 6) {
+                progress = ((currentStep - 1) / 6) * 100;
+            } else {
+                progress = 100;
+            }
+            document.getElementById("progressBar").style.width = progress + "%";
+        }
+
+        // Heart interaction
+        function createHearts() {
+            const heart = document.getElementById("interactiveHeart");
+            heart.classList.add("heartbeat");
+            setTimeout(() => heart.classList.remove("heartbeat"), 600);
+
+            for (let i = 0; i < 5; i++) {
+                let smallHeart = document.createElement("div");
+                smallHeart.className = "small-heart";
+                smallHeart.innerHTML = "❤️";
+                smallHeart.style.left = Math.random() * 100 + "vw";
+                document.getElementById("floatingHearts").appendChild(smallHeart);
+
+                setTimeout(() => smallHeart.remove(), 4000);
+            }
+
+            document.getElementById("heartMessage").style.opacity = 1;
+        }
+
+        // Typing effect for Step 4
+        const message = "Happy Birthday Ishu ❤️ Every moment with you is my favorite memory, baby! 💕";
+        let index = 0;
+
+        function typeMessage() {
+            if (index < message.length) {
+                document.getElementById("typingText").innerHTML += message.charAt(index);
+                index++;
+                setTimeout(typeMessage, 80);
+            }
+        }
+
+        const observer = new MutationObserver(() => {
+            if (document.getElementById("step4").style.display === "block") {
+                document.getElementById("typingText").innerHTML = "";
+                index = 0;
+                typeMessage();
+            }
+        });
+        observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ["style"] });
+
+        // Particles.js config
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 60 },
+                size: { value: 3 },
+                move: { speed: 1 },
+                line_linked: { enable: false },
+                color: { value: "#ff69b4" }
+            },
+            interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "repulse" } } }
+        });
+
+        // Resume music on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTime = localStorage.getItem('bgMusicTime');
+            if (savedTime) bgMusic.currentTime = parseFloat(savedTime);
+            bgMusic.play().catch(err => console.log('User interaction needed to play music'));
+        });
+    </script>
+</body>
+</html>

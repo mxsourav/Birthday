@@ -1,0 +1,164 @@
+/* ====== Basic Reset ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background: black;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  position: relative;
+}
+
+/* ====== Date on Top ====== */
+#date {
+  font-size: 5vw; /* responsive with screen width */
+  position: absolute;
+  top: 20%;        /* near top */
+  text-align: center;
+  width: 100%;
+  color: #ffffff;
+  text-shadow: 0 0 10px #ff1493, 0 0 20px #ff69b4, 0 0 30px #ff1493; /* dark pink glow */
+}
+
+/* ====== Countdown in Middle ====== */
+#countdown {
+  font-size: 5em; /* bigger */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ====== Continue and Next Chapter Buttons ====== */
+#continueButton, #nextButton {
+  display: none;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  font-weight: bold;
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 60px;        /* slightly lower */
+  left: 50%;           /* center horizontally */
+  transform: translateX(-50%);  /* keep it centered */
+  z-index: 10;
+  transition: none;    /* no animation */
+}
+
+/* ====== Countdown in Middle ====== */
+#countdown {
+  font-size: 20vw; /* scales with screen width */
+  margin-bottom: 30px;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgb(75, 168, 255), 0 0 30px rgb(28, 103, 173), 0 0 45px rgb(75, 168, 255); /* blue glow */
+}
+
+/* ====== Countdown Blinking ====== */
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+.blink {
+  animation: blink 1s infinite;
+}
+
+/* ====== Confetti Canvas ====== */
+#confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* ====== Video Container ====== */
+#videoContainer {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ====== Fade Animations ====== */
+.fadeOut {
+  animation: fadeOut 1s forwards;
+}
+
+.fadeIn {
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+/* ====== Birthday Text Styling ====== */
+#birthdayText {
+  position: absolute;
+  top: 15%;              
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;   
+  font-size: 6vw;        /* scales with screen width */
+  font-weight: bold;
+  color: #ffffff;        
+  text-shadow: 0 0 15px #00f, 0 0 30px #00f;  
+  opacity: 0;            
+  transition: opacity 2s ease-in-out;
+  z-index: 20;           
+}
+
+
+
+/* ====== Next Chapter Button ====== */
+#nextButton {
+  position: fixed;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  font-size: 1.5em;
+  font-weight: bold;
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+ 
+  z-index: 20;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+#nextButton:hover {
+  transform: translateX(-50%) scale(1.1);
+  background: linear-gradient(45deg, #00bfff, #1e90ff);
+}

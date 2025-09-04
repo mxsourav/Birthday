@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Celebration</title>
+<style>
+  /* Basic Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    width: 100%;
+    height: 100%;
+    background: black;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+  }
+
+  #date {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  #countdown {
+    font-size: 3em;
+    margin-bottom: 30px;
+  }
+
+  #tapButton {
+    display: none;
+    padding: 15px 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    background: #ff0080;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    z-index: 10;
+  }
+
+  #confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  #videoContainer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Fade animations */
+  .fadeOut {
+    animation: fadeOut 1s forwards;
+  }
+
+  .fadeIn {
+    animation: fadeIn 1s forwards;
+  }
+
+  @keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+</head>
+<body>
+
+<div id="date">12/09/2025</div>
+<div id="countdown">11:59:55</div>
+<button id="tapButton" onclick="location.href='index2.html'">Tap to Continue</button>
+
+<canvas id="confetti"></canvas>
+
+<div id="videoContainer">
+  <video id="celebrationVideo" src="./images/celebration.mp4" muted autoplay></video>
+</div>
+
+<audio id="popAudio" src="./audio/pop.mp3"></audio>
+
+<script>
+  // Fake 5-second countdown
+  let countdownEl = document.getElementById('countdown');
+  let dateEl = document.getElementById('date');
+  let tapButton = document.getElementById('tapButton');
+  let videoContainer = document.getElementById('videoContainer');
+  let popAudio = document.getElementById('popAudio');
+  let confettiCanvas = document.getElementById('confetti');
+  let ctx = confettiCanvas.getContext('2d');
+
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+
+  // Countdown logic
+  let seconds = 55;
+  let minutes = 59;
+  let hours = 11;
+
+  let countdownInterval = setInterval(() => {
+    countdownEl.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    if(seconds === 0 && minutes === 59 && hours === 11){
+      // Trigger at 12:00:00 next second
+    }
+    seconds--;
+    if(seconds < 0){
+      seconds = 59;
+      minutes--;
+      if(minutes < 0){
+        minutes = 0;
+        hours++;
+      }
+    }
+
+    if(hours === 12 && minutes === 0 && seconds === 0){
+      clearInterval(countdownInterval);
+      triggerCelebration();
+    }
+  }, 1000);
+
+  function pad(n){ return n<10 ? '0'+n : n; }
+
+  // Celebration function
+  function triggerCelebration(){
+    // Change date
+    dateEl.textContent = '13/09/2025';
+    // Fade out countdown
+    countdownEl.classList.add('fadeOut');
+
+    // Play pop audio
+    popAudio.play();
+
+    // Start confetti
+    startConfetti();
+
+    // Show video after short delay
+    setTimeout(() => {
+      videoContainer.style.display = 'block';
+      videoContainer.classList.add('fadeIn');
+      tapButton.style.display = 'inline-block';
+    }, 1500);
+  }
+
+  // Simple confetti effect
+  const confettiParticles = [];
+  function startConfetti(){
+    for(let i=0;i<150;i++){
+      confettiParticles.push({
+        x: Math.random()*window.innerWidth,
+        y: Math.random()*window.innerHeight - window.innerHeight,
+        r: Math.random()*6+4,
+        d: Math.random()*50+10,
+        color: `hsl(${Math.random()*360}, 100%, 50%)`,
+        tilt: Math.random()*10-10,
+        tiltAngleIncrement: Math.random()*0.07+0.05,
+        tiltAngle: 0
+      });
+    }
+    requestAnimationFrame(drawConfetti);
+  }
+
+  function drawConfetti(){
+    ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+    confettiParticles.forEach(p=>{
+      p.tiltAngle += p.tiltAngleIncrement;
+      p.y += (Math.cos(p.d)+3+p.r/2)/2;
+      p.x += Math.sin(p.d);
+      p.tilt = Math.sin(p.tiltAngle)*15;
+
+      ctx.beginPath();
+      ctx.lineWidth = p.r/2;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r/4, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/4);
+      ctx.stroke();
+    });
+    requestAnimationFrame(drawConfetti);
+  }
+</script>
+
+</body>
+</html>

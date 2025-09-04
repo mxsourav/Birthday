@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown Celebration</title>
+  <link rel="stylesheet" href="blackstyle.css" />
+</head>
+<body>
+
+  <!-- Date and Countdown -->
+  <div id="date">12th September 2025</div><br>
+  <div id="countdown">11:59:55</div>
+
+  <!-- Continue Button -->
+  <button id="continueButton">Continue</button>
+
+  <!-- Confetti -->
+  <canvas id="confetti"></canvas>
+
+  <!-- Video + Birthday Text -->
+  <div id="videoContainer">
+    <video id="celebrationVideo" src="./images/celebration.mp4" muted autoplay></video>
+    <div id="birthdayText">Wish You Happy 19th Birthday</div>
+  </div>
+
+  <!-- Audio Files -->
+  <audio id="popAudio" src="./audio/pop.mp3"></audio>
+  <audio id="celebrationAudio" src="./audio/sound.mp3"></audio>
+
+  <!-- Next Chapter Button (hidden by default, will show with JS) -->
+  <button id="nextButton" style="display:none;">Next Chapter</button>
+
+  <!-- JS File -->
+  <script src="blackscript.js"></script>
+</body>
+</html>
