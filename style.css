@@ -304,7 +304,7 @@ body {
 
 /* Step 4 h2 text responsive */
 #step4 h2 {
-    font-size: 2.5vw; /* scales with viewport width */
+    font-size: 4vw; /* scales with viewport width */
     text-align: center;
     color: #fff;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
@@ -552,10 +552,84 @@ body {
     line-height: 1.3;
     margin-top: 0.3em;
 }
-#step5 h2 {
-    font-size: 2vw; /* scales with viewport width */
-    text-align: center;
-    color: #fff;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-    margin-bottom: 20px;
+/* --- headline --- */
+#hedlinecontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  z-index: 2;
+}
+
+#shine {
+  font-size: 60px;
+  font-weight: 800;
+  color: transparent;
+  position: relative;   /* add */
+  z-index: 10;          /* increase */
+  background-image: linear-gradient(90deg, #ffffff 0%, #ffe4f0 50%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+  text-shadow: 0 2px 8px rgba(233,85,189,0.18);
+  letter-spacing: 1px;
+}
+
+
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Step 7 Selfies gallery images */
+#step7 .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18vw, 1fr));
+    gap: 1.5vw;
+    justify-items: center;
+    margin: 2vw auto;
+}
+
+#step7 .gallery img {
+    width: 100%;
+    max-width: 22vw; /* max size for larger screens */
+    aspect-ratio: 1/1;
+    border: 5px solid rgba(255,255,255,0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#step7 .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+
+
+@media (max-width: 900px) {
+    #step7 .gallery img { max-width: 30vw; }
+    #step7 .btn { font-size: 2vw; padding: 2vw 4vw; min-width: 35vw; }
+}
+
+@media (max-width: 600px) {
+    #step7 .gallery img { max-width: 40vw; }
+    #step7 .btn { font-size: 3.5vw; padding: 3vw 5vw; min-width: 60vw; }
+}
+/* --- Gallery Grid --- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    justify-items: center;
+}
+
+/* --- Stacked Frame --- */
+.stacked-frame {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
