@@ -4,7 +4,9 @@
     margin: 0;
     padding: 0;
 }
-
+html, body {
+    touch-action: manipulation; /* disables pinch-zoom gestures */
+}
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -157,16 +159,16 @@ body {
 }
 
 /* Beating animation */
-@keyframes beat {
+@keyframes beatHeart {
     0% { transform: scale(1); }
-    25% { transform: scale(1.2); }
+    25% { transform: scale(1.3); }
     50% { transform: scale(1); }
-    75% { transform: scale(1.2); }
+    75% { transform: scale(1.3); }
     100% { transform: scale(1); }
 }
 
 #interactiveHeart.beat {
-    animation: beat 0.6s ease-in-out;
+    animation: beatHeart 0.6s ease-in-out infinite;
 }
 
 /* --- Curvy Text for your special texts --- */
@@ -317,22 +319,9 @@ body {
     box-shadow: 0 0 25px #00cfff, 0 0 35px #007bff;
 }
 
-/* Step 1 image responsive + glow */
-#step1 #cakeImage {
-    width: 30vw;        /* scales with viewport width */
-    max-width: 250px;   /* optional max size */
-    height: auto;
-    border-radius: 15px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px #007bff, 0 0 35px #ff1493, 0 0 50px #ff69b4; /* glow effect */
-    animation: glowPulse 2s infinite alternate;
-}
 
 /* Glow pulse animation */
-@keyframes glowPulse {
-    from { box-shadow: 0 0 20px #ff69b4, 0 0 35px #ff1493, 0 0 50px #ff69b4; }
-    to { box-shadow: 0 0 30px #ff69b4, 0 0 45px #ff1493, 0 0 60px #ff69b4; }
-}
+
 
 /* Step 1 image responsive + glow */
 #step1 #cakeImage {
@@ -340,15 +329,16 @@ body {
     height: auto;
     border-radius: 15px;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px #00cfff, 0 0 35px #007bff, 0 0 50px #00cfff; /* blue glow */
-    animation: glowPulse 2s infinite alternate;
+    box-shadow: 0 0 20px #00cfff, 0 0 35px #007bff, 0 0 50px #00cfff;
+    animation: glowPulseBlue 2s infinite alternate;
 }
 
 /* Glow pulse animation */
-@keyframes glowPulse {
+@keyframes glowPulseBlue {
     from { box-shadow: 0 0 20px #00cfff, 0 0 35px #007bff, 0 0 50px #00cfff; }
-    to { box-shadow: 0 0 30px #00cfff, 0 0 45px #007bff, 0 0 60px #00cfff; }
+    to   { box-shadow: 0 0 30px #00cfff, 0 0 45px #007bff, 0 0 60px #00cfff; }
 }
+
 
 /* Step 1 container */
 #step1 {
@@ -447,18 +437,16 @@ body {
 }
 
 /* Shine animation */
-@keyframes shine {
-    0% { text-shadow: 0 0 5px #00cfff, 0 0 10px #00cfff, 0 0 20px #007bff, 0 0 30px #007bff; }
-    50% { text-shadow: 0 0 15px #00cfff, 0 0 25px #00cfff, 0 0 35px #007bff, 0 0 50px #007bff; }
-    100% { text-shadow: 0 0 5px #00cfff, 0 0 10px #00cfff, 0 0 20px #007bff, 0 0 30px #007bff; }
+@keyframes shineHeadline {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
+
 
 
 /* Glow pulse animation (shared with step1) */
-@keyframes glowPulse {
-    from { box-shadow: 0 0 20px #00cfff, 0 0 35px #007bff, 0 0 50px #00cfff; }
-    to { box-shadow: 0 0 30px #00cfff, 0 0 45px #007bff, 0 0 60px #00cfff; }
-}
+
 /* Step 4 heart - fully responsive, centered, glowing white */
 #interactiveHeart {
     font-size: clamp(100px, 20vw, 200px); /* responsive size with vw */
@@ -469,15 +457,6 @@ body {
     margin: 40px auto;   /* center horizontally with space above/below */
     transition: transform 0.2s ease;
     text-shadow: 0 0 15px #f7aaaa,0 0 50px #f7aaaa; /* white glow */
-}
-
-/* Beating animation */
-@keyframes beat {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.3); }
-    50% { transform: scale(1); }
-    75% { transform: scale(1.3); }
-    100% { transform: scale(1); }
 }
 
 #interactiveHeart.beat {
@@ -571,7 +550,7 @@ body {
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: shine 3s linear infinite;
+  animation: shineHeadline 3s linear infinite;
   text-shadow: 0 2px 8px rgba(233,85,189,0.18);
   letter-spacing: 1px;
 }
@@ -632,4 +611,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2px;
+}
+#particles-js, #floatingHearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
