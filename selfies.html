@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selfies</title>
+  <!-- Load main button + layout styles -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Load page-specific styles -->
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <!-- AUDIO ELEMENT: Background Music -->
+  <audio id="bgMusic" src="./audio/bgsound2.mp3" style="display:none;"></audio>
+
+  <!-- Headline -->
+  <div id="hedlinecontainer">
+    <div id="shine">our selfies💞</div>
+  </div>
+
+  <!-- Animated Gallery -->
+  <div class="gallery">
+    <img src="./images/photo1.jpg" alt="a lovely kiss in the night">
+    <img src="./images/photo2.jpg" alt="a woman inside a car">
+    <img src="./images/photo5.jpg" alt="a baby">
+    <img src="./images/photo3.jpg" alt="a girl in the forest">
+    <img src="./images/photo4.jpg" alt="a girl">
+  </div>
+<br><br>
+
+  <!-- Back Button -->
+  <div class="back-button">
+    <a href="index.html#step5">
+      <button>⬅ Back</button>
+    </a>
+  </div>
+
+  <!-- RESUME MUSIC SCRIPT -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const bgMusic = document.getElementById('bgMusic');
+
+        // Resume music from last saved position
+        const savedTime = localStorage.getItem('bgMusicTime');
+        if (savedTime) {
+            bgMusic.currentTime = parseFloat(savedTime);
+        }
+
+        // Try to play music (may require user interaction if browser blocks autoplay)
+        bgMusic.play().catch(err => console.log('User interaction needed to play music'));
+
+        // Save music position before leaving the page
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('bgMusicTime', bgMusic.currentTime);
+        });
+    });
+  </script>
+
+</body>
+</html>

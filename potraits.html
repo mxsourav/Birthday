@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Portraits</title>
+<link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <!-- AUDIO ELEMENT: Background Music -->
+  <audio id="bgMusic" src="./audio/bgsound2.mp3" style="display:none;"></audio>
+
+<h1>Us Together💕</h1>
+
+<div class="gallery">
+    <!-- Portrait photos -->
+    <div class="photo-frame">
+        <img src="./images/potrait1.jpg" alt="Portrait 1">
+        <span>First Couple Pic</span>
+    </div>
+    <div class="photo-frame">
+        <img src="./images/potrait2.jpg" alt="Portrait 2">
+        <span>Clicked by Sir ji😎</span>
+    </div>
+    <div class="photo-frame">
+        <img src="./images/potrait3.jpg" alt="Portrait 3">
+        <span>First Pujo Pic</span>
+    </div>
+
+    <!-- Combined stacked frame: two photos vertically -->
+    <div class="photo-frame stacked-frame">
+        <div class="stacked-photo">
+            <img src="./images/landscape3.jpg" alt="First Pic of Kolkata">
+            <span>First Pic of Kolkata</span>
+        </div>
+        <div class="stacked-photo">
+            <img src="./images/landscape1.jpg" alt="First Holi">
+            <span>First Holi</span>
+        </div>
+    </div>
+
+    <!-- Another stacked frame -->
+    <div class="photo-frame stacked-frame">
+        <div class="stacked-photo">
+            <img src="./images/landscape4.jpg" alt="Holi 2k25">
+            <span>Holi 2k25</span>
+        </div>
+        <div class="stacked-photo">
+            <img src="./images/landscape2.jpg" alt="First Movie">
+            <span>First Movie</span>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<!-- Back Button -->
+<div class="back-button">
+    <a href="index.html#step5">
+        <button>⬅ Back</button>
+    </a>
+</div>
+
+<!-- RESUME MUSIC SCRIPT -->
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Resume music from last saved position
+    const savedTime = localStorage.getItem('bgMusicTime');
+    if (savedTime) {
+        bgMusic.currentTime = parseFloat(savedTime);
+    }
+
+    // Try to play music (may require user interaction if browser blocks autoplay)
+    bgMusic.play().catch(err => console.log('User interaction needed to play music'));
+
+    // Save music position before leaving the page
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('bgMusicTime', bgMusic.currentTime);
+    });
+});
+</script>
+
+</body>
+</html>
