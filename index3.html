@@ -33,7 +33,7 @@
        <!-- Step 1: Greeting -->
 <div class="step" id="step1" style="display:block;">
     <!-- Heading always on single line -->
-    <h1 class="single-line">Once again Happy Birthday, Ishika!</h1>
+    <h1 class="single-line">Once again Happy Birthday,"name"</h1>
 
     <!-- First paragraph (can wrap if needed) -->
     <p>I've created something extra for you...<br>
@@ -55,18 +55,18 @@
         <!-- Step 2: Lock Input -->
         <div class="step" id="step2" style="display:none;">
             <h2>Let's Make This Personal</h2>
-            <p>Enter the valid password of Sourav's phone</p>
+            <p>Enter the valid password of author's phone</p>
             <input type="password" class="name-input" id="nameInput" placeholder="Enter password">
             <button class="btn" onclick="saveName()">Continue</button>
         </div>
 
         <!-- Step 3: Heart Animation -->
         <div class="step" id="step3" style="display:none;">
-            <h2> <span id="displayName">ohh is it you Megh?🫣</span></h2><br>
+            <h2> <span id="displayName">ohh is it you "birthday person name"?🫣</span></h2><br>
             <p>Click on the heart to visually feel my love for you!</p>
             <div id="interactiveHeart" onclick="createHearts()">💖</div>
             <div id="heartMessage" class="message-box">
-                <p>Every beat of my heart whispers your name, <span id="heartName">ishika❤️</span></p>
+                <p>Every beat of my heart whispers your name, <span id="heartName">birthday person name❤️</span></p>
             <br><br></div>
             <button class="btn" onclick="nextStep(4)">Next Chapter</button>
         </div>
